@@ -5,7 +5,6 @@ import pandas as pd
 import os
 from datetime import datetime
 from dateutil.relativedelta import relativedelta  # para cálculo datas no PostgreSQL
-import matplotlib.pyplot as plt
 #from dotenv import load_dotenv
 
 # -----------------------
