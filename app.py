@@ -1,4 +1,5 @@
 import streamlit as st
+import sys
 import psycopg2
 import pandas as pd
 import os
@@ -9,6 +10,7 @@ import matplotlib.pyplot as plt
 # -----------------------
 # Função para rodar query no Supabase (PostgreSQL)
 # -----------------------
+
 def run_query_pg(query: str) -> pd.DataFrame:
     try:
         conn = psycopg2.connect(
@@ -21,10 +23,14 @@ def run_query_pg(query: str) -> pd.DataFrame:
         )
         df = pd.read_sql_query(query, conn)
         conn.close()
+        print('Sucesso')
         return df
+    
     except Exception as e:
         st.error(f"Erro ao executar a consulta no Supabase: {e}")
         return pd.DataFrame()
+
+
 
 # -----------------------
 # Queries adaptadas para PostgreSQL
@@ -52,12 +58,15 @@ GROUP BY dia
 ORDER BY dia ASC
 """
 
+df = run_query_pg(DEFAULT_QUERY)
+df
+"""
 # -----------------------
 # App Streamlit
 # -----------------------
 def main():
-    st.set_page_config(page_title="Dashboard Vendas Supabase", layout="wide")
-    st.title("📊 Dashboard de Vendas (Supabase)")
+    st.set_page_config(page_title="Dashboard Vendas", layout="wide")
+    st.title("📊 Dashboard de Vendas")
 
     df = run_query_pg(DEFAULT_QUERY)
     df_vendas_dia = run_query_pg(VENDA_DIA_QUERY)
@@ -110,3 +119,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+"""
