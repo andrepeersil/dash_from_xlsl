@@ -6,10 +6,13 @@ import os
 from datetime import datetime
 from dateutil.relativedelta import relativedelta  # para cálculo datas no PostgreSQL
 import matplotlib.pyplot as plt
+#from dotenv import load_dotenv
 
 # -----------------------
 # Função para rodar query no Supabase (PostgreSQL)
 # -----------------------
+
+#load_dotenv()
 
 def run_query_pg(query: str) -> pd.DataFrame:
     try:
@@ -27,17 +30,15 @@ def run_query_pg(query: str) -> pd.DataFrame:
         return df
     
     except Exception as e:
-        st.error(f"Erro ao executar a consulta no Supabase: {e}")
-        return pd.DataFrame()
-
-
+        #st.error(f"Erro ao executar a consulta no Supabase: {e}")
+        print(st.error(f"Erro ao executar a consulta no Supabase: {e}"))
 
 # -----------------------
 # Queries adaptadas para PostgreSQL
 # -----------------------
 
 DEFAULT_QUERY = """
-SELECT 
+select
     SUM(receita) AS receita_total,
     COUNT(DISTINCT cliente) AS clientes_unicos,
     COUNT(cliente) AS pedidos,
@@ -58,9 +59,7 @@ GROUP BY dia
 ORDER BY dia ASC
 """
 
-df = run_query_pg(DEFAULT_QUERY)
-df
-"""
+
 # -----------------------
 # App Streamlit
 # -----------------------
@@ -119,4 +118,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-"""
