@@ -1,17 +1,16 @@
 import streamlit as st
-import sys
 import psycopg2
 import pandas as pd
 import os
 from datetime import datetime
-from dateutil.relativedelta import relativedelta  # para cálculo datas no PostgreSQL
-#from dotenv import load_dotenv
+from dateutil.relativedelta import relativedelta 
+from dotenv import load_dotenv
 
 # -----------------------
 # Função para rodar query no Supabase (PostgreSQL)
 # -----------------------
 
-#load_dotenv()
+load_dotenv()
 
 def run_query_pg(query: str) -> pd.DataFrame:
     try:
