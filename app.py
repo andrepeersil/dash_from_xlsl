@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 # Função para rodar query no Supabase (PostgreSQL)
 # -----------------------
 
-load_dotenv()
+#load_dotenv()
 
 def run_query_pg(query: str) -> pd.DataFrame:
     try:
@@ -61,6 +61,7 @@ ORDER BY dia ASC
 # -----------------------
 # App Streamlit
 # -----------------------
+
 def main():
     st.set_page_config(page_title="Dashboard Vendas", layout="wide")
     st.title("📊 Dashboard de Vendas")
@@ -84,19 +85,25 @@ def main():
     pct_pedidos_realizados = metrics["pedido_realizado"]
     pct_realizado = metrics["realizado"]
 
+    progresso_pedidos = int(min(max(pct_pedidos_realizados, 0), 1) * 100)
+    progresso_receita = int(min(max(pct_realizado, 0), 1) * 100)
+
+    st.write("##")
+
     col1, col2, col3 = st.columns(3)
 
-    col1.metric("💰 Receita Total", f"R$ {receita_total:,.2f}")
-    col1.metric("🔸 Clientes Únicos", f"{clientes_unicos}")
-    col1.metric("🚚 Pedidos", f"{pedidos}")
+    col1.metric("💰 Receita Total", f"R$ {receita_total:,.2f}/R$ 1,313,634.55 - ("f"{pct_pedidos_realizados:.2%})")
+    col1.progress(progresso_pedidos)
+    col1.subheader("##")
 
-    col2.metric("🚚 Pedidos Realizados", f"{pct_pedidos_realizados:.2%}")
-    progresso_pedidos = int(min(max(pct_pedidos_realizados, 0), 1) * 100)
-    col2.progress(progresso_pedidos)
+    col1.metric("🚚 Pedidos Realizados", f"{pedidos}/725 - ("f"{pct_realizado:.2%})")
+    col1.progress(progresso_receita)
+    col1.subheader("##")
 
-    col2.metric("📈 Receitas Realizadas", f"{pct_realizado:.2%}")
-    progresso_receita = int(min(max(pct_realizado, 0), 1) * 100)
-    col2.progress(progresso_receita)
+
+    col3.metric("🔸 Clientes Únicos", f"{clientes_unicos}")
+
+    st.write("##")
 
     hoje = datetime.now()
     ultimo_dia_mes = (hoje.replace(day=1) + relativedelta(months=1)) - relativedelta(days=1)
