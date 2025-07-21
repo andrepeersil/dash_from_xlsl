@@ -4,7 +4,7 @@ import pandas as pd
 import os
 from datetime import datetime
 from dateutil.relativedelta import relativedelta 
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 
 # -----------------------
 # Função para rodar query no Supabase (PostgreSQL)
