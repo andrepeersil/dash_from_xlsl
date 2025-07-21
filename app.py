@@ -15,11 +15,11 @@ load_dotenv()
 def run_query_pg(query: str) -> pd.DataFrame:
     try:
         conn = psycopg2.connect(
-            user=os.getenv("USER"),
-            password=os.getenv("PASSWORD"),
-            host=os.getenv("HOST"),
-            port=int(os.getenv("PORT")),
-            dbname=os.getenv("DBNAME"),
+            user=os.getenv('USER'),
+            password=os.getenv('PASSWORD'),
+            host=os.getenv('HOST'),
+            port=int(os.getenv('PORT')),
+            dbname=os.getenv('DBNAME'),
             sslmode='require'
         )
         df = pd.read_sql_query(query, conn)
