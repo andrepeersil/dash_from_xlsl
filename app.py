@@ -109,7 +109,7 @@ def main():
     ultimo_dia_mes = (hoje.replace(day=1) + relativedelta(months=1)) - relativedelta(days=1)
 
     dias_uteis = pd.bdate_range(start=hoje + pd.Timedelta(days=1), end=ultimo_dia_mes)
-    dias_uteis_restantes = len(dias_uteis)
+    dias_uteis_restantes = len(dias_uteis) + 1
 
     meta_dia = (1313634.55 - receita_total) / max(dias_uteis_restantes, 1)
     meta_dia_pedidos = (725 - pedidos) / max(dias_uteis_restantes, 1)
