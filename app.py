@@ -85,20 +85,14 @@ def main():
     pct_pedidos_realizados = metrics["pedido_realizado"]
     pct_realizado = metrics["realizado"]
 
-    progresso_pedidos = lambda pedidos: 100 if (x := int(100 * pedidos / 725)) > 100 else x
-    progresso_receita = lambda pedidos: 100 if (x := int(100*receita_total/1313634.55)) > 100 else x
-
-
     st.write("##")
 
     col1, col2, col3 = st.columns(3)
 
-    col1.metric("💰 Receita Total", f"R$ {receita_total:,.2f}/R$ 1,313,634.55", delta = f"{pct_realizado:,.2f}%", delta_color="off")
-    col1.progress(progresso_receita)
+    col1.metric("💰 Receita Total", f"R$ {receita_total:,.2f}/R$ 1,313,634.55", delta = f"{100*pct_realizado:,.2f}%", delta_color="off")
     col1.subheader("##")
 
-    col1.metric("🚚 Pedidos Realizados", f"{pedidos}/725",delta = f"{pct_pedidos_realizados:,.2f}%", delta_color="off")
-    col1.progress(progresso_pedidos)
+    col1.metric("🚚 Pedidos Realizados", f"{pedidos}/725",delta = f"{100*pct_pedidos_realizados:,.2f}%", delta_color="off")
     col1.subheader("##")
 
 
