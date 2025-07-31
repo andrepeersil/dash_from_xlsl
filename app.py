@@ -92,12 +92,12 @@ def main():
 
     col1, col2, col3 = st.columns(3)
 
-    col1.metric("💰 Receita Total", f"R$ {receita_total:,.2f}/R$ 1,313,634.55 - ("f"{pct_pedidos_realizados:.2%})")
-    col1.progress(progresso_pedidos)
+    col1.metric("💰 Receita Total", f"R$ {receita_total:,.2f}/R$ 1,313,634.55", delta = f"{pct_pedidos_realizados}:.2%f",delta_color="off")
+    col1.progress(progresso_receita)
     col1.subheader("##")
 
-    col1.metric("🚚 Pedidos Realizados", f"{pedidos}/725 - ("f"{pct_realizado:.2%})")
-    col1.progress(progresso_receita)
+    col1.metric("🚚 Pedidos Realizados", f"{pedidos}/725",delta = f"{pct_realizado}:.2%f",delta_color="inverse" )
+    col1.progress(progresso_pedidos)
     col1.subheader("##")
 
 
