@@ -85,8 +85,8 @@ def main():
     pct_pedidos_realizados = metrics["pedido_realizado"]
     pct_realizado = metrics["realizado"]
 
-    progresso_pedidos = 100*pedidos/725
-    progresso_receita = 100*receita_total/1313634.55
+    progresso_pedidos = lambda int(100*pedidos/725): 100 if x > 100 else int(100*pedidos/725)
+    progresso_receita = int(100*receita_total/1313634.55)
 
     st.write("##")
 
