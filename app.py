@@ -85,18 +85,18 @@ def main():
     pct_pedidos_realizados = metrics["pedido_realizado"]
     pct_realizado = metrics["realizado"]
 
-    progresso_pedidos = 100*receita_total/1313634.55
-    progresso_receita = 100*pedidos/725
+    progresso_pedidos = 100*pedidos/725
+    progresso_receita = 100*receita_total/1313634.55
 
     st.write("##")
 
     col1, col2, col3 = st.columns(3)
 
-    col1.metric("💰 Receita Total", f"R$ {receita_total:,.2f}/R$ 1,313,634.55", delta = f"{progresso_receita:,.2f}",delta_color="off")
+    col1.metric("💰 Receita Total", f"R$ {receita_total:,.2f}/R$ 1,313,634.55", delta = f"{progresso_receita:,.2f}%", delta_color="off")
     col1.progress(progresso_receita)
     col1.subheader("##")
 
-    col1.metric("🚚 Pedidos Realizados", f"{pedidos}/725",delta = f"{progresso_pedidos:,.2f}",delta_color="off" )
+    col1.metric("🚚 Pedidos Realizados", f"{pedidos}/725",delta = f"{progresso_pedidos:,.2f}%", delta_color="off")
     col1.progress(progresso_pedidos)
     col1.subheader("##")
 
