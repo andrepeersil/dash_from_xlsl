@@ -74,7 +74,7 @@ def lambda_handler(event, context):
                     status = EXCLUDED.status;
             """, (row['id'], row['data'], row['cliente'], row['receita'], row['status']))
 
-        connection.commit()  # Não esqueça de confirmar as alterações
+        connection.commit()  
 
         cursor.close()
         connection.close()
