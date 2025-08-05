@@ -127,7 +127,7 @@ def main():
     #col1.st.progress(pct_receita_realizada*100)
     col1.subheader("##")
 
-    col1.metric(f"🚚 Pedidos Realizados | Meta - {meta_pedidos_mes} Pedidos", f"R$ {pedidos:}", delta = f"{pct_ref_pedidos} Pedidos")
+    col1.metric(f"🚚 Pedidos Realizados | Meta - {meta_pedidos_mes} Pedidos", f"{pedidos:}", delta = f"{pct_ref_pedidos} Pedidos")
     col1.subheader("##")
 
     st.line_chart(df_final, y=["receita_total_acumulada","receita_acumulada"])
